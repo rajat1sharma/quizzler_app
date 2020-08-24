@@ -38,7 +38,6 @@ class _QuizPageState extends State<QuizPage> {
 //  List<bool> answers = [false, true, true];
 //
 
-  int questionnumber = 0;
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -50,7 +49,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizz.questiontt(questionnumber),
+                quizz.questiontt(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -77,7 +76,7 @@ class _QuizPageState extends State<QuizPage> {
                 //The user picked true.
 
                 setState(() {
-                  bool correctanswer = quizz.questionans(questionnumber);
+                  bool correctanswer = quizz.questionans();
                   if (correctanswer == true) {
                     scorekeeper.add(Icon(
                       Icons.check,
@@ -89,7 +88,7 @@ class _QuizPageState extends State<QuizPage> {
                       color: Colors.red,
                     ));
                   }
-                  questionnumber += 1;
+                  quizz.nextQuestion();
                 });
               },
             ),
@@ -110,7 +109,7 @@ class _QuizPageState extends State<QuizPage> {
               onPressed: () {
                 //The user picked false.
                 setState(() {
-                  bool correctanswer = quizz.questionans(questionnumber);
+                  bool correctanswer = quizz.questionans();
                   if (correctanswer == false) {
                     scorekeeper.add(Icon(
                       Icons.check,
@@ -122,7 +121,7 @@ class _QuizPageState extends State<QuizPage> {
                       color: Colors.red,
                     ));
                   }
-                  questionnumber += 1;
+                  quizz.nextQuestion();
                 });
               },
             ),
